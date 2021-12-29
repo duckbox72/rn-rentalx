@@ -7,6 +7,7 @@ import Logo from '../../assets/logo.svg';
 import { Car } from '../../components/Car';
 
 import {
+  CarList,
   Container,
   Header,
   HeaderContent,
@@ -14,7 +15,7 @@ import {
 } from './styles';
 
 export function Home() {
-  const carData1 = {
+  const carData = {
     brand: 'Audi',
     name: 'RS5 Coupe',
     rent: {
@@ -24,15 +25,6 @@ export function Home() {
     thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png'
   }
 
-  const carData2 = {
-    brand: 'Porsche',
-    name: 'Panamera',
-    rent: {
-      period: 'Ao dia',
-      price: 340,
-    },
-    thumbnail: 'https://www.pngkit.com/png/full/237-2375888_porsche-panamera-s.png'
-  }
 
 
 
@@ -54,8 +46,12 @@ export function Home() {
           </TotalCars>
         </HeaderContent>
       </Header>
-      <Car data={carData1}/>
-      <Car data={carData2}/>
+      
+      <CarList
+        data={[1, 2, 3, 4, 5, 6, 7]}
+        keyExtractor={item => String(item)}
+        renderItem={({ item }) => <Car data={carData}/>}
+      />
     </Container>
   );
 }

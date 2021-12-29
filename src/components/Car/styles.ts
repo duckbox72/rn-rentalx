@@ -69,3 +69,4 @@ export const CarImage = styled.Image`
   width: 167px;
   height: 85px;
 `;
+
