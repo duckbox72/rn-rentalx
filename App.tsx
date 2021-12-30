@@ -1,12 +1,17 @@
+// import 'react-native-gesture-handler';
+
 import React from 'react';
 import AppLoading from 'expo-app-loading';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { ThemeProvider } from 'styled-components';
-import { 
+import {
   useFonts,
   Inter_400Regular,
   Inter_500Medium,
 } from '@expo-google-fonts/inter';
-import { 
+import {
   Archivo_400Regular,
   Archivo_500Medium,
   Archivo_600SemiBold
@@ -23,6 +28,8 @@ import { SchedulingComplete } from './src/screens/SchedulingComplete';
 
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
+
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -37,7 +44,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SchedulingComplete />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
