@@ -2,8 +2,6 @@
 
 import React from 'react';
 import AppLoading from 'expo-app-loading';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ThemeProvider } from 'styled-components';
 import {
@@ -17,18 +15,11 @@ import {
   Archivo_600SemiBold
 } from '@expo-google-fonts/archivo';
 
-import { Home } from './src/screens/Home';
+import { Routes } from './src/routes';
 
 import theme from './src/styles/theme';
-import { CarDetails } from './src/screens/CarDetails';
-import { Scheduling } from './src/screens/Scheduling';
-import { SchedulingDetails } from './src/screens/SchedulingDetails';
-import { SchedulingComplete } from './src/screens/SchedulingComplete';
-
-
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
 
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -44,11 +35,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Routes />
     </ThemeProvider>
   );
 }
