@@ -40,16 +40,23 @@ import {
   RentalPriceTotal,
 } from './styles';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
+import { SchedulingComplete } from '../SchedulingComplete';
 
 
 export function SchedulingDetails() {
   const theme = useTheme();
+  const navigation = useNavigation<any>();
+
+  function handleSchedulingComplete() {
+    navigation.navigate('SchedulingComplete')
+  }
 
   return (
     <Container>
       
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={() => navigation.goBack()} />
       </Header>
       <CarImages>
         <ImageSlider 
@@ -134,8 +141,9 @@ export function SchedulingDetails() {
 
       <Footer>
         <Button 
-          title="Confirmar"
+          title="Alugar agora"
           color={theme.colors.success}
+          onPress={handleSchedulingComplete}
         />
       </Footer>
 

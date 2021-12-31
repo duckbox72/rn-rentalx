@@ -1,5 +1,6 @@
 import React from 'react';
 import { useWindowDimensions, StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import LogoSvg from '../../assets/logo_background_gray.svg';
 import DoneSvg from '../../assets/done.svg';
@@ -16,6 +17,11 @@ import { OkButton } from '../../components/OkButton';
 
 export function SchedulingComplete() {
   const { width } = useWindowDimensions();
+  const navigation = useNavigation<any>();
+
+  function handleBackHome() {
+    navigation.navigate('Home')
+  }
 
   return (
     <Container>
@@ -39,7 +45,10 @@ export function SchedulingComplete() {
       </Contents>
 
       <Footer>
-        <OkButton title='OK'/>
+        <OkButton 
+          title='OK'
+          onPress={handleBackHome}
+        />
       </Footer>
 
     </Container>
