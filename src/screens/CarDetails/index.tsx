@@ -90,7 +90,7 @@ export function CarDetails() {
       </Contents>
 
       <Footer>
-        <Button title="Confirmar"/>
+        <Button title="Confirmar" onPress={() => console.log('PRESS')}/>
       </Footer>
 
     </Container>

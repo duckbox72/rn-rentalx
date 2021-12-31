@@ -17,7 +17,6 @@ import {
 
 
 export function Home() {
-
   const carData = {
     brand: 'Audi',
     name: 'RS5 Coupe',
@@ -26,6 +25,10 @@ export function Home() {
       price: 120,
     },
     thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png'
+  }
+
+  const handleCarDetails = () => {
+    console.log('CAR DETAILS');
   }
 
 
@@ -52,7 +55,7 @@ export function Home() {
         data={[1, 2, 3, 4, 5, 6, 7]}
         keyExtractor={item => String(item)}
         renderItem={({ item }) => 
-          <Car data={carData}  onPress={() => {}} />}
+          <Car data={carData}  onPress={handleCarDetails} />}
       />
     </Container>
   );
