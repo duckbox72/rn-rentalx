@@ -1,7 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 
-import { StatusBar } from 'react-native';
+import { api } from '../../services/api';
+
+import { FlatList, StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import Logo from '../../assets/logo.svg';
@@ -15,25 +17,35 @@ import {
   HeaderContent,
   TotalCars,
 } from './styles';
+import { CarDTO } from '../../dtos/CarDTO';
+import { Load } from '../../components/Load';
 
 
 export function Home() {
   const navigation = useNavigation<any>();
 
-  const carData = {
-    brand: 'Audi',
-    name: 'RS5 Coupe',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png'
-  }
+  const [cars, setCars] = useState<CarDTO[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleCarDetails = () => {
     navigation.navigate('CarDetails')
   }
 
+  useEffect(() => {
+    
+    async function fetchCars() {
+      try {
+        const response = await api.get('/cars');
+        setCars(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchCars();
+  }, []);
 
   return (
     <Container>
@@ -54,12 +66,26 @@ export function Home() {
         </HeaderContent>
       </Header>
 
-      <CarList
-        data={[1, 2, 3, 4, 5, 6, 7]}
-        keyExtractor={item => String(item)}
+      {/* <CarList
+        data={cars}
+        keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => 
-          <Car data={carData}  onPress={handleCarDetails} />}
-      />
+          <Car data={item}  onPress={handleCarDetails} />}
+        /> */}
+        
+      {isLoading ? <Load /> :
+        <FlatList 
+          data={cars}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => 
+            <Car data={item}  onPress={handleCarDetails} />}
+
+          contentContainerStyle={{
+            padding: 24,
+          }}
+          showsVerticalScrollIndicator={false}
+        />
+      }
     </Container>
   );
 }
