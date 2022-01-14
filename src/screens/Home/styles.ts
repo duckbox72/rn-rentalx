@@ -7,7 +7,6 @@ import { CarDTO } from '../../dtos/CarDTO';
 
 export const Container = styled.View`
   flex: 1;
-  
 
   background-color: ${({ theme }) => theme.colors.background_primary};
 `;
@@ -35,7 +34,7 @@ export const TotalCars = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const CarList = styled(FlatList as new () => FlatList<CarDTO>)
+export const CarList = styled(FlatList as new () => FlatList<CarDTO[]>)
 .attrs({
   contentContainerStyle: {
     padding: 24

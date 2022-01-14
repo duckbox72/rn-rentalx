@@ -1,5 +1,5 @@
 import React from 'react';
-import { RectButtonProps } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, RectButtonProps } from 'react-native-gesture-handler';
 
 import {
   Container,
@@ -12,8 +12,10 @@ interface Props extends RectButtonProps {
 
 export function OkButton({ title, ...rest }: Props) {
   return (
-    <Container {...rest}>
-      <Title>{title}</Title>
-    </Container>
+    <GestureHandlerRootView>
+      <Container {...rest}>
+        <Title>{title}</Title>
+      </Container>
+    </GestureHandlerRootView>
   );
 }
