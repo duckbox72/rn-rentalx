@@ -2,28 +2,37 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 
-// This component is supposed to be styled inline
 import { 
-  Calendar as RNCalendar,
-  LocaleConfig 
+  Calendar as CustomCalendar,
+  LocaleConfig,
 } from 'react-native-calendars';
 
-LocaleConfig.locales['pt-br'] = {
-  monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-  monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-  dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
-  dayNamesShort: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'],
-  today: 'Hoje'
-}
+import { ptBR } from './localeConfig';
+import { DateCallbackHandler } from 'react-native-calendars/index';
 
+
+LocaleConfig.locales['pt-br'] = ptBR
 LocaleConfig.defaultLocale = 'pt-br';
 
+interface MarkedDateProps {
+  [date: string]: {
+    color: string;
+    textColor: string;
+    disabled?: boolean;
+    disableTouchEvent?: boolean;
+  },
+}
+
+interface CalendarProps {
+  markedDates: MarkedDateProps;
+  onDayPress: DateCallbackHandler;
+}
 
 export function Calendar() {
   const theme = useTheme();
 
   return (
-    <RNCalendar 
+    <CustomCalendar 
       renderArrow={( direction ) => 
         <Feather 
           size={24}
@@ -55,6 +64,7 @@ export function Calendar() {
 
       firstDay={1} //MONDAY
       minDate={new Date().toDateString()}
+      markingType='period'
     />
   );
 }
