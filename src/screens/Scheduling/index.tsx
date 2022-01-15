@@ -85,7 +85,6 @@ export function Scheduling() {
             </DateValue>
           </DateInfo>
         </RentalPeriod>
-      
       </Header>
 
       <Contents>
