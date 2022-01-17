@@ -49,7 +49,7 @@ export function SchedulingDetails() {
   const navigation = useNavigation<any>();
 
   function handleSchedulingComplete() {
-    navigation.navigate('SchedulingComplete')
+    navigation.navigate('SchedulingComplete');
   }
 
   return (
