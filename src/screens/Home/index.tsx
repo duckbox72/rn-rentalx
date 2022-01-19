@@ -4,6 +4,7 @@ import { useNavigation} from '@react-navigation/native';
 import { FlatList, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import Logo from '../../assets/logo.svg';
 
@@ -17,6 +18,7 @@ import {
   HeaderContent,
   TotalCars,
   MyCarsButton,
+  MyCarsButtonWrapper,
 } from './styles';
 import { CarDTO } from '../../dtos/CarDTO';
 import { Load } from '../../components/Load';
@@ -26,18 +28,18 @@ import { useTheme } from 'styled-components';
 export function Home() {
   const navigation = useNavigation<any>();
   const theme = useTheme();
-
+  
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const handleCarDetails = (car: CarDTO) => {
     navigation.navigate('CarDetails', { car })
   }
-
+  
   const handleMyCars = () => {
     navigation.navigate('MyCars');
   }
-
+  
   useEffect(() => {
     
     async function fetchCars() {
@@ -94,13 +96,17 @@ export function Home() {
         />
       }
 
-      <MyCarsButton onPress={handleMyCars}>
-        <Ionicons 
-          name="ios-car-sport" 
-          size={32}
-          color={theme.colors.shape}
-        />
-      </MyCarsButton>
+      <MyCarsButtonWrapper>
+        <GestureHandlerRootView>
+          <MyCarsButton onPress={handleMyCars}>
+            <Ionicons 
+              name="ios-car-sport" 
+              size={32}
+              color={theme.colors.shape}
+            />
+          </MyCarsButton>
+        </GestureHandlerRootView>  
+      </MyCarsButtonWrapper>
     </Container>
   );
 }
