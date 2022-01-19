@@ -62,9 +62,7 @@ export function MyCars() {
         />
     
         <Title>
-          Escolha uma {'\n'}
-          data de inicio e {'\n'}
-          fim do aluguel
+          Seus agendamentos estão aqui.
         </Title>
         <SubTitle>
           Conforto, segurança e praticidade
