@@ -58,6 +58,7 @@ export function SchedulingDetails() {
   const theme = useTheme();
   const navigation = useNavigation<any>();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [rentalPeriodDisplayInfo, setRentalPeriodDisplayInfo] = useState<RentalPeriodDisplayInfo>({} as RentalPeriodDisplayInfo)
 
   // useRoute is responsible to retrieve params 
@@ -69,6 +70,8 @@ export function SchedulingDetails() {
 
 
   async function handleSchedulingComplete() {
+    setIsLoading(true)
+
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
 
     const unavalable_dates = [
@@ -87,8 +90,14 @@ export function SchedulingDetails() {
       id: car.id,
       unavalable_dates
     })
-    .then(response => navigation.navigate('SchedulingComplete'))
-    .catch(() => Alert.alert('Nao foi possível confirmar a sua reserva.'))
+    .then(response => {
+      setIsLoading(false);
+      navigation.navigate('SchedulingComplete')
+    })
+    .catch(() => {
+      setIsLoading(false);
+      Alert.alert('Nao foi possível confirmar a sua reserva.');
+    })
   }
 
   useEffect(() => {
@@ -175,6 +184,8 @@ export function SchedulingDetails() {
           title="Alugar agora"
           color={theme.colors.success}
           onPress={handleSchedulingComplete}
+          enabled={!isLoading}
+          isLoading={isLoading}
         />
       </Footer>
 
