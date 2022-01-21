@@ -12,14 +12,17 @@ import
     Easing, // controls animation behavior within duration
     interpolate,
     Extrapolate,
+    runOnJS
   } from 'react-native-reanimated';
 
 import {
   Container,
 } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 
 export function Splash() {
+  const navigation = useNavigation<any>();
   const splashAnimation = useSharedValue(0)
 
   const brandStyle = useAnimatedStyle(() => {
@@ -55,10 +58,20 @@ export function Splash() {
     }
   });
 
+  function startApp() {
+    navigation.navigate('Home');
+  }
+
   useEffect(() => {
     splashAnimation.value = withTiming(
       50,
-      { duration: 1000}
+      { duration: 1000},
+      // callback function to call homescreen statApp called via
+      // worklet and runOnJS (to handle different threads run)
+      () => {
+        'worklet' // small pieces of code
+        runOnJS(startApp)();
+      }
     );
   }, [])
 

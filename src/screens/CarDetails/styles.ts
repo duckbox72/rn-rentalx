@@ -21,13 +21,13 @@ export const CarImages = styled.View`
   margin-top: ${getStatusBarHeight() + 32}px;
 `;
 
-export const Contents = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    padding: 24,
-    alignItems: 'center',
-  },
-  showsVerticalScrollIndicartor: false
-})``;
+// export const Contents = styled.ScrollView.attrs({
+//   contentContainerStyle: {
+//     padding: 24,
+//     alignItems: 'center',
+//   },
+//   showsVerticalScrollIndicartor: false
+// })``;
 
 export const Details = styled.View`
   width: 100%;
