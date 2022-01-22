@@ -26,7 +26,12 @@ export function StackRoutes() {
         />
         <Screen
           name="Home" 
-          component={Home} 
+          component={Home}
+
+          // Prevents back to Splash in IOS
+          options={{
+            gestureEnabled: false,
+          }} 
         />
         <Screen 
           name="CarDetails" 
