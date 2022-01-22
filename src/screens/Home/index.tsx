@@ -20,15 +20,17 @@ import Logo from '../../assets/logo.svg';
 import { api } from '../../services/api';
 import { Car } from '../../components/Car';
 
+import { CarDTO } from '../../dtos/CarDTO';
+import { LoadAnimation } from '../../components/LoadAnimation';
+import { useTheme } from 'styled-components';
+
+
 import {
   Container,
   Header,
   HeaderContent,
   TotalCars,
 } from './styles';
-import { CarDTO } from '../../dtos/CarDTO';
-import { Load } from '../../components/Load';
-import { useTheme } from 'styled-components';
 
 
 export function Home() {
@@ -119,7 +121,7 @@ export function Home() {
         </HeaderContent>
       </Header>
         
-      {isLoading ? <Load /> :
+      {isLoading ? <LoadAnimation /> :
         <FlatList 
           data={cars}
           keyExtractor={item => String(item.id)}

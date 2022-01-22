@@ -1,7 +1,7 @@
 import React,  { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
-import { Alert } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
@@ -109,7 +109,11 @@ export function SchedulingDetails() {
 
   return (
     <Container>
-      
+      <StatusBar 
+        barStyle='dark-content'
+        translucent
+        backgroundColor='tranparent'
+      />
       <Header>
         <BackButton onPress={() => navigation.goBack()} />
       </Header>
