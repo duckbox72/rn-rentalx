@@ -70,11 +70,11 @@ export function SchedulingDetails() {
 
 
   async function handleSchedulingComplete() {
-    setIsLoading(true)
+    // setIsLoading(true)
 
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
 
-    const unavalable_dates = [
+    const unavailable_dates = [
       ...schedulesByCar.data.unavailable_dates,
       ...dates,
     ];
@@ -86,9 +86,9 @@ export function SchedulingDetails() {
       endDate: format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy'),
     })
 
-    api.put(`/schedules_bycars/${car.id}`, {
+    await api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
-      unavalable_dates
+      unavailable_dates
     })
     .then(response => {
       setIsLoading(false);
