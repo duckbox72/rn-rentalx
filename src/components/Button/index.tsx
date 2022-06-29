@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import { GestureHandlerRootView, RectButtonProps } from 'react-native-gesture-handler';
-import theme from '../../styles/theme';
+import { useTheme } from 'styled-components';
 
 import {
   Container,
@@ -24,6 +24,8 @@ export function Button({
   light = false,
   ...rest
 }: Props) {
+  const theme = useTheme();
+
   return (
     <GestureHandlerRootView>
       <Container 
