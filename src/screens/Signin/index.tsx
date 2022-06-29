@@ -39,9 +39,13 @@ export function SignIn() {
       });
   
       await schema.validate({ email, password });
-      Alert.alert('Sucesso', 'Login realizado com sucesso');
+      Alert.alert('Sucesso');
     } catch (error) {
-      
+      if(error instanceof Yup.ValidationError) {
+        Alert.alert('Opa', error.message);
+      } else {
+        Alert.alert('Erro no login', 'Verifique suas credenciais');
+      }
     }
   }
   
