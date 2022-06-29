@@ -11,7 +11,6 @@ import {
 interface Props extends RectButtonProps {
   title: string;
   color?: string;
-  enabled?: boolean;
   isLoading?: boolean;
   light?: boolean;
 }
@@ -19,6 +18,7 @@ interface Props extends RectButtonProps {
 export function Button({
   title,
   color,
+  onPress,
   enabled = true,
   isLoading = false,
   light = false,
@@ -30,7 +30,7 @@ export function Button({
         {...rest} 
         color={color? color : theme.colors.main}
         enabled={enabled}
-        style={{ opacity: enabled || !isLoading ? 1 : 0.5}}
+        style={{ opacity: !enabled || isLoading ? .5 : 1}}
       >
         { isLoading 
           ? <ActivityIndicator color={theme.colors.shape}/>

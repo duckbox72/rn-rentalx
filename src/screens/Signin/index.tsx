@@ -3,7 +3,8 @@ import {
   StatusBar, 
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard, 
+  Keyboard,
+  Alert,
 } from 'react-native';
 
 import { Button } from '../../components/Button';
