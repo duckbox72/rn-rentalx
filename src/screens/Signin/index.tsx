@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useTheme } from 'styled-components';
+
 import { 
   StatusBar, 
   KeyboardAvoidingView,
@@ -13,8 +15,6 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 
-import theme from '../../styles/theme';
-
 import { 
   Container,
   Header,
@@ -27,6 +27,8 @@ import {
 export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const theme = useTheme();
 
   async function handleSignin() {
     try {
