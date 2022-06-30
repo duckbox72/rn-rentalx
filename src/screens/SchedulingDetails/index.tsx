@@ -92,7 +92,11 @@ export function SchedulingDetails() {
     })
     .then(response => {
       setIsLoading(false);
-      navigation.navigate('SchedulingComplete')
+      navigation.navigate('Confirmation', {
+        nextScreen: 'Home',
+        title: 'Carro alugado',
+        message: `Agora você so precisa ir\naté a concecionaria da RENTALX\npegar o seu automóvel.`,
+      });
     })
     .catch(() => {
       setIsLoading(false);

@@ -9,6 +9,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
+import { Confirmation } from '../Confirmation';
 import { BackButton } from '../../components/BackButton';
 import { Bullet } from '../../components/Bullet';
 import { Button } from '../../components/Button';
@@ -37,7 +38,7 @@ export function SignupSecondStep() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const route = useRoute();
   const theme = useTheme();
 
@@ -55,7 +56,12 @@ export function SignupSecondStep() {
     if(password !== confirmPassword) {
       return Alert.alert('Opa', 'As senhas não conferem');
     }
-    
+
+    navigation.navigate('Confirmation', {
+      nextScreen: 'SignIn',
+      title: 'Cadastro concluído',
+      message: `Agora é só fazer login\ne aproveitar.`,
+    }); 
   }
 
   return (

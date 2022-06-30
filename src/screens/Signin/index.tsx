@@ -29,7 +29,7 @@ export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const theme = useTheme();
 
@@ -55,7 +55,7 @@ export function SignIn() {
   }
 
   function handleSignupFirstStep() {
-    navigation.navigate('SignupFirstStep', {});
+    navigation.navigate('SignupFirstStep');
   }
   
   return (
