@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
 import { 
@@ -28,6 +29,8 @@ export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigation = useNavigation();
+
   const theme = useTheme();
 
   async function handleSignin() {
@@ -49,6 +52,10 @@ export function SignIn() {
         Alert.alert('Erro no login', 'Verifique suas credenciais');
       }
     }
+  }
+
+  function handleSignupFirstStep() {
+    navigation.navigate('SignupFirstStep', {});
   }
   
   return (
@@ -101,8 +108,8 @@ export function SignIn() {
               title="Criar conta gratuita"
               color={theme.colors.background_secondary}
               light
-              onPress={() => {}}
-              enabled={false}
+              onPress={handleSignupFirstStep}
+              enabled={true}
               isLoading={false}
             />
           </Footer>
