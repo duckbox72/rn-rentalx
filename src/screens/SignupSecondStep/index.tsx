@@ -6,10 +6,10 @@ import {
  } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
 
 import { BackButton } from '../../components/BackButton';
 import { Bullet } from '../../components/Bullet';
-import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 
 import {
@@ -21,17 +21,16 @@ import {
   Form,
   FormTitle,
 } from './styles';
+import { PasswordInput } from '../../components/PasswordInput';
 
-export function SignupFirstStep() {
+export function SignupSecondStep() {
 
   const navigation = useNavigation();
 
+  const theme = useTheme();
+
   function handleBack() {
     navigation.goBack();
-  }
-
-  function handleNextStep() {
-    navigation.navigate('SignupSecondStep', {});
   }
 
   return (
@@ -55,25 +54,19 @@ export function SignupFirstStep() {
           </SubTitle>
 
           <Form>
-            <FormTitle>1. Dados</FormTitle>
-            <Input 
-              iconName='user'
-              placeholder="Nome" 
+            <FormTitle>2. Senha</FormTitle>
+            <PasswordInput 
+              iconName='lock'
+              placeholder="Senha"
             />
-            <Input 
-              iconName='mail'
-              placeholder="E-mail"
-              keyboardType='email-address' 
-            />
-            <Input 
-              iconName='credit-card'
-              placeholder="CNH"
-              keyboardType='numeric'
+            <PasswordInput 
+              iconName='lock'
+              placeholder="Repita a senha"
             />
           </Form>
           <Button 
-            title="Proximo"
-            onPress={handleNextStep}
+            title="Cadastrar"
+            color={theme.colors.success}
           />
 
         </Container>
