@@ -6,7 +6,6 @@ import { Bullet } from '../Bullet';
 import {
   Container,
   ImageIndexes,
-  ImageIndex,
   CarImageWrapper,
   CarImage,
 
