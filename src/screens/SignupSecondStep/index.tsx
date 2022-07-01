@@ -9,7 +9,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
-import { Confirmation } from '../Confirmation';
+import { api } from '../../services/api';
 import { BackButton } from '../../components/BackButton';
 import { Bullet } from '../../components/Bullet';
 import { Button } from '../../components/Button';
@@ -48,7 +48,7 @@ export function SignupSecondStep() {
     navigation.goBack();
   }
 
-  function handleRegister() {
+  async function handleRegister() {
     if(!password || !confirmPassword) {
       return Alert.alert('Opa', 'Preencha os campos de senha');
     }
@@ -57,10 +57,22 @@ export function SignupSecondStep() {
       return Alert.alert('Opa', 'As senhas não conferem');
     }
 
-    navigation.navigate('Confirmation', {
-      nextScreen: 'SignIn',
-      title: 'Cadastro concluído',
-      message: `Agora é só fazer login\ne aproveitar.`,
+    await api.post('/users', {
+      name: user.name,
+      email: user.email,
+      driver_license: user.driverLicense,
+      password,
+    })
+    .then(() => {
+      navigation.navigate('Confirmation', {
+        nextScreen: 'SignIn',
+        title: 'Cadastro concluído',
+        message: `Agora é só fazer login\ne aproveitar.`,
+      }); 
+    })
+    .catch((error) => {
+      console.log(error)
+      Alert.alert('Opa', 'Erro no cadastro, tente novamente.');
     }); 
   }
 
