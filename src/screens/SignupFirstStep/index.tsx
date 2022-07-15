@@ -6,6 +6,8 @@ import {
   Alert,
  } from 'react-native';
 
+ import { useAuth } from '../../hooks/auth';
+
 import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 
@@ -30,7 +32,9 @@ export function SignupFirstStep() {
   const [email, setEmail] = useState('');
   const [driverLicense, setDriverLicense] = useState('');
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
+  const { user } = useAuth();
+  console.log(`USUARIO AUTENTICADO ${user.name}`);
 
   function handleBack() {
     navigation.goBack();
