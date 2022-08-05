@@ -14,6 +14,7 @@ export function AppTabRoutes() {
       <Navigator>
         <Screen
           name="Home" 
+          //component={AppStackRoutes}
           component={AppStackRoutes}
         />
         <Screen 
